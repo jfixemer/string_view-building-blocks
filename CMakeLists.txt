@@ -4,6 +4,19 @@ set(PROJECT_NAME "svbb")
 set(CURRENT_VERSION 0.1)
 project(${PROJECT_NAME} VERSION ${CURRENT_VERSION} LANGUAGES CXX)
 
+
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  set(IS_TOPLEVEL_PROJECT TRUE)
+else()
+  set(IS_TOPLEVEL_PROJECT FALSE)
+endif()
+
+option(SVBB_BUILD_TESTING "Build and run SVBB tests " ${IS_TOPLEVEL_PROJECT})
+option(SVBB_BUILD_EXAMPLES "Build and run SVBB Example executables " ${IS_TOPLEVEL_PROJECT})
+
+include(GNUInstallDirs)
+
+
 set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}")
 set(TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test")
 set(EXAMPLE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/examples")
@@ -93,7 +106,7 @@ elseif(SVBB_USE_STX_STRING_VIEW)
 	target_include_directories("${PROJECT_NAME}_config" INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 endif()
 
-if(BUILD_TESTS)
+if(SVBB_BUILD_TESTING)
 	enable_testing()
     add_executable("${PROJECT_NAME}_test" ${INCLUDE_FILES} ${TEST_FILES} "${TEST_DIR}/test_config.hpp")
 	target_link_libraries("${PROJECT_NAME}_test" PRIVATE svbb::svbb svbb::config)
@@ -113,3 +126,36 @@ if(SVBB_BUILD_EXAMPLES)
         endforeach()
     endif()
 endif()
+
+
+# locations are provided by GNUInstallDirs
+install(
+  TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}_Targets
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  "${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY SameMajorVersion)
+
+configure_package_config_file(
+  "${PROJECT_SOURCE_DIR}/${PROJECT_NAME}Config.cmake.in"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" INSTALL_DESTINATION
+  ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+
+install(
+    EXPORT ${PROJECT_NAME}_Targets
+    FILE ${PROJECT_NAME}Targets.cmake
+    NAMESPACE ${PROJECT_NAME}::
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+
+install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+              "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/svbb
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
