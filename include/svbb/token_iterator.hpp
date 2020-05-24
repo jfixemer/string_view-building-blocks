@@ -1,6 +1,6 @@
 #pragma once
-#include "config.hpp"
-#include "split.hpp"
+#include "svbb/config.hpp"
+#include "svbb/split.hpp"
 
 namespace SVBB_NAMESPACE {
 

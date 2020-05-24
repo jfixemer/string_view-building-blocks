@@ -1,7 +1,7 @@
 #pragma once
 
-#include "config.hpp"
-#include "util.hpp"
-#include "trim.hpp"
-#include "split.hpp"
-#include "tokenize.hpp"
+#include "svbb/config.hpp"
+#include "svbb/util.hpp"
+#include "svbb/trim.hpp"
+#include "svbb/split.hpp"
+#include "svbb/tokenize.hpp"

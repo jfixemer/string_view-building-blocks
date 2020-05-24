@@ -1,7 +1,7 @@
 #pragma once
-#include "config.hpp"
-#include "token_iterator.hpp"
-#include "trim.hpp"
+#include "svbb/config.hpp"
+#include "svbb/token_iterator.hpp"
+#include "svbb/trim.hpp"
 
 namespace SVBB_NAMESPACE {
 

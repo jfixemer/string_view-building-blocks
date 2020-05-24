@@ -74,7 +74,6 @@ TEST_CASE("split on a char, leave delimiter in first part")
     REQUIRE(split_after("abc"_sv, 'b') == make_split("ab"_sv, "c"_sv));
     REQUIRE(split_after("abc"_sv, 'c') == make_split("abc"_sv, ""_sv));
     REQUIRE(split_after("abc"_sv, 'x') == make_split("abc"_sv, ""_sv));
-
 }
 
 TEST_CASE("split on a delimiter list, leave delimiter in first part")
@@ -94,4 +93,5 @@ TEST_CASE("split on a delimiter list, leave delimiter in first part")
     REQUIRE(split_after("abc"_sv, "xb"_sv) == make_split("ab"_sv, "c"_sv));
     REQUIRE(split_after("abc"_sv, "xc"_sv) == make_split("abc"_sv, ""_sv));
 }
+
 } // namespace

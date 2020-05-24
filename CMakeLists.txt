@@ -43,7 +43,8 @@ set(TEST_FILES
 
 set(EXAMPLES
     "tokenize_for_loop"
-    "tokenize_std_count"
+	"tokenize_std_count"
+	"performance_split"
 )
 
 set(EXAMPLES_CONSTEXPR
