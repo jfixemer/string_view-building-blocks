@@ -87,8 +87,8 @@ int main(int argc, char** argv)
     duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
 
     std::cout << "Total distribution: " << token_count << "\n";
-    for(size_t i = 1; i < len; ++i)
-        std::cout << "Length: " << i << " has " << distribution[i] << " occurrences\n";
+    // for(size_t i = 1; i < len; ++i)
+    //     std::cout << "Length: " << i << " has " << distribution[i] << " occurrences\n";
 
     std::cout << "Total tokens: " << token_count << "\n";
     std::cout << "Tokenize took: " << time_span.count() << " seconds.\n";

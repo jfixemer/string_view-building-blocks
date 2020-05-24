@@ -45,6 +45,7 @@ set(EXAMPLES
     "tokenize_for_loop"
 	"tokenize_std_count"
 	"performance_split"
+	"tokenize_basic_xml"
 )
 
 set(EXAMPLES_CONSTEXPR
