@@ -39,6 +39,7 @@ set(TEST_FILES
     "${TEST_DIR}/split.t.cpp"
     "${TEST_DIR}/util.t.cpp"
 	"${TEST_DIR}/token_iterator.t.cpp"
+	"${TEST_DIR}/xml_tokenizer.t.cpp"
 )
 
 set(EXAMPLES
@@ -46,6 +47,7 @@ set(EXAMPLES
 	"tokenize_std_count"
 	"performance_split"
 	"tokenize_basic_xml"
+	"performance_xml"
 )
 
 set(EXAMPLES_CONSTEXPR
