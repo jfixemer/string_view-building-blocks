@@ -1,5 +1,5 @@
 #pragma once
-#include "config.hpp"
+#include "svbb/config.hpp"
 #include <algorithm>
 
 namespace SVBB_NAMESPACE {

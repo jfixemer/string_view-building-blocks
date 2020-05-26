@@ -1,5 +1,5 @@
 #pragma once
-#include "config.hpp"
+#include "svbb/config.hpp"
 #include "char_traits.hpp"
 
 namespace SVBB_NAMESPACE { namespace literals {
